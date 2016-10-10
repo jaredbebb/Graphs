@@ -2,6 +2,7 @@ package basicgraph;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -120,9 +121,23 @@ public abstract class Graph {
 	 * 
 	 * @return The degree sequence of this graph.
 	 */
+	//Degree: the degree of a vertex is the sum of its in-degree and its out-degree.
+	//In-degree: the in-degree of a vertex, v, is the number of edges with v as their endpoint.
+	//Out-degree: the out-degree of a vertex, v, is the number of edges with v as their start point.
+	/*Degree sequence: an ordered list containing the degrees of each of the vertices in a graph, 
+	in non-increasing sorted order (with repetitions). The degree sequence of a graph is an 
+	invariant of the graph and can be used to distinguish between two graphs and to analyze graph properties.*/
 	public List<Integer> degreeSequence() {
 		// XXX: Implement in part 1 of week 1
-		return null;
+		//first changes
+		List<Integer> degreeList = new ArrayList<Integer>();
+		int verticesInt = getNumVertices();
+		
+		for(int i = 0; i < verticesInt; i++){
+				degreeList.add(getInNeighbors(i).size() + getNeighbors(i).size());
+			}
+		Collections.sort(degreeList, Comparator.reverseOrder());
+		return degreeList;
 	}
 	
 	/**

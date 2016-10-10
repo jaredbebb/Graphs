@@ -104,8 +104,37 @@ public class GraphAdjMatrix extends Graph {
 	 * @return List<Integer> a list of indices of vertices.  
 	 */	
 	public List<Integer> getDistance2(int v) {
-		// XXX Implement this method in week 1
-		return null;
+		/*List<Integer> twoHop = new ArrayList<Integer>();
+		int vertices = getNumVertices();
+		int[][] sMatrix = new int[vertices][vertices];
+		for(int i = 0; i < vertices; i++){
+			for (int j = 0; j < vertices; j++){
+				//neighbors.add(i);
+				//instead of adding i directly, add the
+				//neighbors of i
+				adjMatrix[i][j] = 0;
+				for (int k = 0; k < vertices; k ++){
+					sMatrix[i][j] += adjMatrix[i][k] * adjMatrix[i][j];
+				}
+				
+			}
+		}
+		
+		for (int i = 0; i < vertices; i ++) {
+			if (sMatrix[v][i] != 0) {
+				twoHop.add(i);
+			}
+		}
+		
+		
+		return twoHop;*/
+		
+		List<Integer> twoHop = new ArrayList<>();
+
+		for (int u : getNeighbors(v)) {
+			twoHop.addAll(getNeighbors(u));
+		}
+		return twoHop;
 	}
 	
 	/**

@@ -8,6 +8,10 @@
 package roadgraph;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -24,7 +28,15 @@ import util.GraphLoader;
  */
 public class MapGraph {
 	//TODO: Add your member variables here in WEEK 2
+	private int numEdges;
+	private int numVertices;
+	private ArrayList<GeographicPoint> vertexes;
 	
+	public HashMap<HashSet<GeographicPoint>, List<String>> vertexesAndEdges;
+	
+	
+	
+
 	
 	/** 
 	 * Create a new empty MapGraph 
@@ -32,7 +44,16 @@ public class MapGraph {
 	public MapGraph()
 	{
 		// TODO: Implement in this constructor in WEEK 2
+		this.numVertices = 0;
+		this.numEdges = 0;
+		this.vertexes = new ArrayList<GeographicPoint>();
+
+		//idk a hashmap of vertexes, with their edges?
+		this.vertexesAndEdges = new HashMap<HashSet<GeographicPoint>, List<String>>();
+
 	}
+	
+	MapGraph Test = new MapGraph();
 	
 	/**
 	 * Get the number of vertices (road intersections) in the graph
@@ -41,7 +62,9 @@ public class MapGraph {
 	public int getNumVertices()
 	{
 		//TODO: Implement this method in WEEK 2
-		return 0;
+		//return 0;
+		//here we go
+		return Test.numVertices;
 	}
 	
 	/**
@@ -50,8 +73,15 @@ public class MapGraph {
 	 */
 	public Set<GeographicPoint> getVertices()
 	{
+		
+		//double latitude = 0;
+		//double longitude = 0;
+		//intersections are acually vertices
+		Collection<GeographicPoint> intersections = new HashSet<GeographicPoint>();
+		intersections = Test.vertexes;
+		//GeographicPoint intersections =  new GeographicPoint(latitude, longitude);
 		//TODO: Implement this method in WEEK 2
-		return null;
+		return (Set<GeographicPoint>) intersections;
 	}
 	
 	/**
@@ -61,7 +91,9 @@ public class MapGraph {
 	public int getNumEdges()
 	{
 		//TODO: Implement this method in WEEK 2
-		return 0;
+		//return 0;
+		//here we go..
+		return Test.numEdges;
 	}
 
 	
@@ -127,6 +159,31 @@ public class MapGraph {
 		
 		// Hook for visualization.  See writeup.
 		//nodeSearched.accept(next.getLocation());
+		//Breadth first goes broad into multiple paths, out from starting point. Depth first goes deep down one path from starting point
+		
+		/*FIFO
+		 * Queue: list where you add elements to 
+		 * one end and remove them from the other
+		 * enqueueu--> add an element
+		 * dequeue---> remove an element
+		 * 
+		 */
+		
+		/*
+		 * BFS(S, G):
+		 * 	Initialize: queue, visited HashSet and parent HashMap
+		 * 	Enqueue S onto the queue and add to visited
+		 * 	while queue is not empty:
+		 * 		dequeue node curr from front of queue
+		 * 		if curr == G return parent map
+		 * 		for each of curr's neighbors, n, not in visited set:
+		 * 			add n to the visited set
+		 * 			add curr as n's parent in parent map
+		 * 			enqueue n onto the queue
+		 * If we get here then there's not path
+		 * Note: This alogrithm doesn't output the path, but think about what it returns.
+		 */
+		
 
 		return null;
 	}
